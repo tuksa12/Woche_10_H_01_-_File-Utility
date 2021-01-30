@@ -35,7 +35,7 @@ public class Uniq extends TextFileUtility{
         } catch (IOException e) {
             System.out.println("Error: Could not read the file.");
         }
-        return result.toString();
+        return "Uniq on file " + file.toString()+ ":\n" +result.toString();
     }
 
     public static void main(String[] args){

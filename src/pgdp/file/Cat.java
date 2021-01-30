@@ -44,6 +44,7 @@ public class Cat extends TextFileUtility{
             try {
                 Cat newCat = new Cat(args);
                 newCat.applyToAll();
+                System.out.println();
             } catch (InvalidCommandLineArgumentException E){
                 System.out.println("Error: Invalid Command Line");
             }

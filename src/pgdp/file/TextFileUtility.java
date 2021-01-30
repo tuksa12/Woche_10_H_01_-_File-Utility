@@ -52,11 +52,11 @@ public abstract class TextFileUtility {
     public abstract String applyToFile(Path file);
 
     public void applyToAll(){
-        for (int index = 0; index < inputPaths.size(); index++) {
-            try{
-                Files.walk(inputPaths.get(index))
-                        .forEach(path -> applyToFile(path));
-            } catch (IOException E){
+        for (Path inputPath : inputPaths) {
+            try {
+                Files.walk(inputPath)
+                        .forEach(path -> System.out.println(applyToFile(path)));
+            } catch (IOException E) {
                 System.out.println("Error in applyToAll");
             }
         }
