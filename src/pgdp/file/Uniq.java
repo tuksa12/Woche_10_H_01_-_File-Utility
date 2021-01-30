@@ -39,13 +39,13 @@ public class Uniq extends TextFileUtility{
     }
 
     public static void main(String[] args){
-        if(Arrays.stream(args).anyMatch(string -> string.contains("Uniq"))){
+        //if(Arrays.stream(args).anyMatch(string -> string.contains("Uniq"))){
             try {
                 Uniq newUniq = new Uniq(args);
                 newUniq.applyToAll();
             } catch (InvalidCommandLineArgumentException E){
                 System.out.println("Error: Invalid Command Line");
             }
-        }
+        //}
     }
 }

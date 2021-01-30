@@ -40,7 +40,7 @@ public class Cat extends TextFileUtility{
     }
 
     public static void main(String[] args){
-        if(Arrays.stream(args).anyMatch(string -> string.contains("Cat"))){
+        //if(Arrays.stream(args).anyMatch(string -> string.contains("Cat"))){
             try {
                 Cat newCat = new Cat(args);
                 newCat.applyToAll();
@@ -48,6 +48,6 @@ public class Cat extends TextFileUtility{
             } catch (InvalidCommandLineArgumentException E){
                 System.out.println("Error: Invalid Command Line");
             }
-        }
+        //}
     }
 }
