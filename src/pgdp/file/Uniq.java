@@ -15,21 +15,17 @@ public class Uniq extends TextFileUtility{
     public String applyToFile(Path file) {
         StringBuilder result = new StringBuilder();
         try {
-//            Set content = new HashSet();
-            Scanner scanner = new Scanner(file);
-
-//            Files.walk(file).forEach(files -> {
-//                if(Files.isRegularFile(file)){
-//                    try {
-//                        content.add(Files.readString(file));
-//                    } catch (IOException e) {
-//                        System.out.println("Error: Could not read the file.");
-//                    }
-//                }
-//            });
-            while (scanner.hasNextLine()){
-                if(result.toString().lines().noneMatch(line -> line.contains(scanner.nextLine()))){
-                    result.append("\n").append(scanner.nextLine());
+            List<String> lineListNotDuplicated = Files.readAllLines(file);
+            List<String> lineList = Files.readAllLines(file);
+            for (int i = 0; i < lineList.size(); i++) {
+                if(!lineListNotDuplicated.contains(lineList.get(i))){//If the second list doesn't have the line, add
+                    lineListNotDuplicated.add(lineList.get(i));
+                }
+            }
+            for (int i = 0; i < lineListNotDuplicated.size(); i++) {
+                result.append(lineListNotDuplicated.get(i));
+                if(i < lineListNotDuplicated.size() - 1){//Last line, so that a new line is not added
+                    result.append("\n");
                 }
             }
         } catch (IOException e) {
@@ -39,13 +35,12 @@ public class Uniq extends TextFileUtility{
     }
 
     public static void main(String[] args){
-        //if(Arrays.stream(args).anyMatch(string -> string.contains("Uniq"))){
             try {
                 Uniq newUniq = new Uniq(args);
                 newUniq.applyToAll();
             } catch (InvalidCommandLineArgumentException E){
                 System.out.println("Error: Invalid Command Line");
             }
-        //}
+
     }
 }
